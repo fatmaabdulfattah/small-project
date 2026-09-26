@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-test
+  labels:
+    app: demo-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-test
+  template:
+    metadata:
+      labels:
+        app: demo-test
+    spec:
+      containers:
+        - name: demo-test
+          image: ${{ secrets.DOCKER_USERNAME }}/demo-test:latest
+          ports:
+            - containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10

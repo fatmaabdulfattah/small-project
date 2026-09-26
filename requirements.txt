@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 fastapi>=0.100.0
 uvicorn>=0.20.0
+=======
+fastapiiiii==0.00.00
+uvicorn><=9.9.9
+>>>>>>> faccc26 (chore: autonomous devops scaffold)
 pydantic>=2.0.0
